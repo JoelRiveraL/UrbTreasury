@@ -12,4 +12,4 @@ Proyecto para la gestion de los pagos de una urbanizacion, donde se encuentran l
 
 ## Instalación
 
-Proporciona pasos claros sobre cómo instalar y configurar el proyecto. Incluye requisitos previos, si los hay.
+Proporciona pasos claros sobre cómo instalar y configurar el proyecto. Incluye requisitos previos, si los hay...
