@@ -1,0 +1,74 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn System Urbanization</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;300&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat+Alternates:wght@400;900&family=Montserrat:wght@600&family=Roboto+Slab&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha256-..." crossorigin="anonymous" />
+    <link rel="stylesheet" href="./Styles/styleLogIn.css">
+    <style>
+        .custom-alert {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border: 1px solid #f5c6cb;
+            border-radius: 5px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="wrapper">
+        <form action="Forms/valLogin.php" class="formulario" method="post">
+            <h1 class="title">Inicio</h1>
+            <section class="inp">
+                <input type="text" name="usuario" class="input" placeholder="Usuario" required>
+                <i class="fas fa-user"></i>
+            </section>
+            <section class="inp">
+                <input type="password" name="password" class="input" placeholder="Contraseña" required>
+                <i class="fas fa-lock"></i>
+            </section>
+            <br>
+            <div id="customAlert" class="custom-alert"></div>
+            <br><button type="submit" class="submit"> Iniciar Sesión </button>
+            <p class="footer">¿No tienes cuenta?<a href="Principal/signUp.php" class="link"> Por favor, Registrate </a>
+            </p>
+            <script>
+                var queryString = window.location.search;
+                var params = new URLSearchParams(queryString);
+
+                if (params.get('error') === 'true') {
+                    mostrarAlerta('Usuario o contraseña incorrectos');
+                }
+
+                function mostrarAlerta(mensaje) {
+                    var alerta = document.getElementById('customAlert');
+                    alerta.textContent = mensaje;
+                    alerta.style.display = 'block';
+
+                    setTimeout(function () {
+                        alerta.style.display = 'none';
+                    }, 5000);
+                }
+            </script>
+        </form>
+        <section></section>
+        <section class="banner">
+            <img src="./Images/LOGOCOPY.png" alt="Logo Urbanización" width="48%"><br>
+            <h1 class="welText">BIENVENIDO<br></h1>
+        </section>
+    </section>
+
+</body>
+
+</html>

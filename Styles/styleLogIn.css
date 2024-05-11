@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Slab', serif;
+    color: #081b29;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: #eee;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+}
+
+::-webkit-input-placeholder {
+    color: #434446;
+    font-style: italic;
+}
+
+.wrapper {
+    position: relative;
+    width: 800px;
+    height: 65vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    box-shadow: 0 0 50px 0 #4b90cb;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 35px;
+}
+
+.inp {
+    padding-bottom: 10px;
+    border-bottom: 2px solid #2b343a;
+}
+
+.input {
+    border: none;
+    outline: none;
+    background: none;
+    width: 260px;
+    margin-top: 40px;
+    padding-right: 10px;
+    font-size: 17px;
+    color: #2c5570;
+}
+
+.submit {
+    color: #eee;
+    font-family: 'Roboto Slab', serif;
+    border: none;
+    outline: none;
+    width: 288px;
+    margin-top: 25px;
+    padding: 10px 0;
+    font-size: 20px;
+    border-radius: 40px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #87CEEB, #62aae9, #2473b8);
+}
+
+.footer {
+    margin-top: 30px;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+}
+
+.link {
+    color: #62aae9;
+    text-decoration: none;
+}
+
+.banner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 450px;
+    height: 100%;
+    background: linear-gradient(to right, #87CEEB, #62aae9, #2473b8);
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 40% 100%);
+    padding-right: 50px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.banner img {
+    margin-top: -40;
+    padding: 0 23px 50px;
+}
+
+.welText {
+    padding-left: 70px;
+    font-size: 40px;
+    margin-top: -20px;
+    line-height: 50px;
+}
+
+.custom-alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    display: none;
+}

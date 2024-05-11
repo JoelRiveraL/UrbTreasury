@@ -1,0 +1,471 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Slab', serif;
+    transition: text-transform 0.4s ease-in-out;
+    text-decoration: none;
+}
+
+body {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* //////////// MENU HAMBURGUESA ///////////////*/
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to right, #4ab1da, #498dc7, #2473b8);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 0 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+header section {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: left;
+}
+
+header section img {
+    padding-right: 15px;
+}
+
+header section a {
+    justify-content: center;
+    text-align: center;
+    align-items: left;
+    display: flex;
+    font-size: xx-large;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+header .logo {
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+header .navbar ul {
+    list-style: none;
+}
+
+header .navbar ul li {
+    position: relative;
+    float: left;
+}
+
+header .navbar ul li a {
+    font-size: 18px;
+    padding: 20px;
+    color: white;
+    display: block;
+}
+
+header .navbar ul li a:hover {
+    background-color: #244a6ca3;
+}
+
+header .navbar ul li ul {
+    position: absolute;
+    left: 0;
+    width: 200px;
+    background: linear-gradient(to right, #4ab1da, #498dc7, #2473b8);
+    display: none;
+}
+
+header .navbar ul li ul li {
+    width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+header .navbar ul li ul li ul {
+    left: 200px;
+    top: 0;
+}
+
+header .navbar ul li:focus-within>ul,
+header .navbar ul li:hover>ul {
+    display: initial;
+}
+
+.drop {
+    margin-left: 10px;
+}
+
+#menu {
+    display: none;
+}
+
+.menu-icono {
+    width: 25px;
+}
+
+header label {
+    cursor: pointer;
+    display: none;
+}
+
+section {
+    text-align: center;
+}
+
+.registro-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.registro {
+    width: 60%;
+    background-color: #f5f5f5;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+
+}
+
+.registro table {
+    background-color: white;
+    align-items: center;
+    width: 85%;
+    border-collapse: collapse;
+    font-size: 13px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header-row {
+    background-color: #4093dc;
+    color: white;
+}
+
+.registro table td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.registro1 {
+    width: 30%;
+    background-color: #f5f5f5;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+
+}
+
+.registro table {
+    background-color: white;
+    align-items: center;
+    width: 85%;
+    border-collapse: collapse;
+    font-size: 13px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header-row {
+    background-color: #4093dc;
+    color: white;
+}
+
+.registro table td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin: 10px 0;
+}
+
+input,
+select,
+textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 80%;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+input:focus {
+    border: 2px solid #000;
+    background: #f9fff8;
+}
+
+input[type="submit"] {
+    background-color: #398027;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #27541cdd;
+}
+
+.header-row {
+    background-color: #4093dc;
+    color: white;
+}
+
+.even-row {
+    background-color: white;
+}
+
+.odd-row {
+    background-color: #e2f1ff;
+}
+
+footer {
+    color: white;
+    background: linear-gradient(to right, #4ab1da, #498dc7, #2473b8);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin-bottom: 0px;
+    margin-top: auto;
+}
+
+.botones {
+    display: flex;
+}
+
+.copyR {
+    margin-left: 10px;
+}
+
+.copyR p {
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.botones a {
+    text-decoration: none;
+    font-size: 20px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    background-color: white;
+    color: #2473b8;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* RESPONSIVE */
+
+@media screen and (max-width: 1350px) {
+    .contenidoHorizontal {
+        display: grid;
+    }
+}
+
+@media (max-width: 1300px) {
+    header {
+        padding: 15px;
+    }
+
+    header div {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: left;
+    }
+
+    header div img {
+        padding-right: 10px;
+    }
+
+    header div a {
+        justify-content: center;
+        text-align: center;
+        align-items: left;
+        display: flex;
+    }
+
+    header label {
+        display: initial;
+    }
+
+    header .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to right, #4ab1da, #498dc7, #2473b8);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        display: none;
+    }
+
+    header .navbar ul li {
+        width: 100%;
+    }
+
+    header .navbar ul li ul {
+        position: relative;
+        width: 100%;
+    }
+
+    header .navbar ul li ul li {
+        background-color: #3080c5dc;
+    }
+
+    header .navbar ul li ul li ul {
+        width: 100%;
+        left: 0;
+    }
+
+    #menu:checked~.navbar {
+        display: initial;
+    }
+
+}
+
+
+@media screen and (max-width: 700px) {
+
+    header div {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        align-items: left;
+    }
+
+    header div img {
+        padding-right: 10px;
+    }
+
+    header div a {
+        justify-content: center;
+        text-align: center;
+        align-items: left;
+        display: flex;
+    }
+
+    header label {
+        display: initial;
+    }
+
+    header .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to right, #4ab1da, #498dc7, #2473b8);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        display: none;
+    }
+
+    header .navbar ul li {
+        width: 100%;
+    }
+
+    header .navbar ul li ul {
+        position: relative;
+        width: 100%;
+    }
+
+    header .navbar ul li ul li {
+        background-color: #3080c5dc;
+    }
+
+    header .navbar ul li ul li ul {
+        width: 100%;
+        left: 0;
+    }
+
+    #menu:checked~.navbar {
+        display: initial;
+    }
+
+}
+
+@media (max-width: 575px) {
+    header {
+        padding: 20px;
+    }
+
+    header label {
+        display: initial;
+    }
+
+    header .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to right, #4ab1da, #498dc7, #2473b8);
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+        display: none;
+    }
+
+    header .navbar ul li {
+        width: 100%;
+    }
+
+    header .navbar ul li ul {
+        position: relative;
+        width: 100%;
+    }
+
+    header .navbar ul li ul li {
+        background-color: #3080c5dc;
+    }
+
+    header .navbar ul li ul li ul {
+        width: 100%;
+        left: 0;
+    }
+
+    #menu:checked~.navbar {
+        display: initial;
+    }
+}
+
+
+table {
+    width: 65%;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th,
+td {
+    padding: 10px;
+    text-align: left;
+}
+
+.header-row {
+    background-color: #4093dc;
+    color: white;
+}
+
+.even-row {
+    background-color: white;
+}
+
+.odd-row {
+    background-color: #e2f1ff;
+}
+
+tr:hover {
+    background-color: #2e6594;
+    color: white;
+    cursor: pointer;
+}
