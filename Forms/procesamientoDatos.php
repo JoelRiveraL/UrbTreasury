@@ -1,7 +1,11 @@
 <?php
 function ingresoComentario($usuario, $nombre, $email, $asunto)
 {
-    include 'conexionMySql.php';
+    require_once 'conexionMySql.php';
+
+    // Obtener la instancia de la base de datos
+    $db = Database::getInstance();
+    $conn = $db->getConnection();
 
     $fecha_hoy = date("Y-m-d");
     $sql = "INSERT INTO comentarios (usuarioResC, nombreResC, emailResC, asuntoC, fechaC) VALUES (?, ?, ?, ?, ?)";
@@ -15,7 +19,6 @@ function ingresoComentario($usuario, $nombre, $email, $asunto)
     }
 
     $stmt->close();
-    $conn->close();
 
     $_SESSION['nombreC'] = $nombre;
     $_SESSION['usuarioC'] = $usuario;

@@ -40,10 +40,7 @@
                     </ul>
                 </li>
                 <li><a href="../Principal/comentarios.php">COMENTARIOS</a></li>
-                <li><a href="../Principal/soporte.php">SOPORTE</a></li>
-                <li><a href="../index.html">SALIR</a></li>
             </ul>
-
         </nav>
     </header>
 
@@ -93,16 +90,21 @@
                 function recargarTabla()
                 {
                     include '../Forms/conexionMySql.php';
-                    $sqlPago = "SELECT * FROM residente";
-                    $resultPago = $conn->query($sqlPago);
+
+                    // Obtener la instancia de la base de datos
+                    $db = Database::getInstance();
+                    $conn = $db->getConnection();
+
+                    $sqlResidente = "SELECT * FROM residente ORDER BY apellidoR ASC";
+                    $resultResidente = $conn->query($sqlResidente);
                     $index = 0;
 
-                    if ($resultPago->num_rows > 0) {
-                        while ($row = $resultPago->fetch_assoc()) {
-                            if ($index < 8) {
+                    if ($resultResidente->num_rows > 0) {
+                        while ($row = $resultResidente->fetch_assoc()) {
+                            if ($index < 10) {
                                 $rowClass = ($index % 2 == 0) ? 'even-row' : 'odd-row';
                                 echo "<tr class='$rowClass' data-id='" . $row["idResidentes"] . "'>";
-                                echo "<td class='idResidentes'>" . $row["idResidentes"] . "</td>";
+                                echo "<td class='idResidente'>" . $row["idResidentes"] . "</td>";
                                 echo "<td class='cedula'>" . $row["cedulaR"] . "</td>";
                                 echo "<td class='nombre'>" . $row["nombreR"] . "</td>";
                                 echo "<td class='apellido'>" . $row["apellidoR"] . "</td>";
@@ -110,11 +112,9 @@
                                 echo "<td class='telefono'>" . $row["telefonoR"] . "</td>";
                                 echo "<td class='lote'>" . $row["loteR"] . "</td>";
                                 echo "</tr>";
-                                $index++;
                             }
+                            $index++;
                         }
-                    } else {
-                        echo "<p>No se encontraron resultados</p><br>";
                     }
                 }
                 ?>
@@ -159,8 +159,10 @@
                 </tr>
                 <?php
                 if (isset($_POST['buscarR'])) {
-                    include '../Forms/conexionMySql.php';
                     $id = $_POST['cedula'];
+
+                    $db = Database::getInstance();
+                    $conn = $db->getConnection();
 
                     $sqlPago = "SELECT residente.*, residente.nombreR 
                                 FROM residente
@@ -174,7 +176,7 @@
                             if ($index < 10) {
                                 $rowClass = ($index % 2 == 0) ? 'even-row' : 'odd-row';
                                 echo "<tr class='$rowClass' data-id='" . $row["idResidentes"] . "'>";
-                                echo "<td class='idResidentes'>" . $row["idResidentes"] . "</td>";
+                                echo "<td class='idResidente'>" . $row["idResidentes"] . "</td>";
                                 echo "<td class='cedula'>" . $row["cedulaR"] . "</td>";
                                 echo "<td class='nombre'>" . $row["nombreR"] . "</td>";
                                 echo "<td class='apellido'>" . $row["apellidoR"] . "</td>";
@@ -189,27 +191,29 @@
                         echo "<p>No se encontraron resultados</p><br>";
                     }
                     echo "<script>window.location = '#resumen-residente';</script>";
-                } else if (isset($_POST['buscarRNombre'])) {
 
-                    include '../Forms/conexionMySql.php';
+                } else if (isset($_POST['buscarRNombre'])) {
+                    require_once '../Forms/conexionMySql.php';
+
+                    // Obtener la instancia de la base de datos
+                    $db = Database::getInstance();
+                    $conn = $db->getConnection();
+
                     $nombre = $_POST['nombre'];
 
                     // Escapar y citar el nombre para evitar inyección SQL
                     $nombre = $conn->real_escape_string($nombre);
 
-                    $sqlPago = "SELECT residente.*, residente.nombreR 
-                                FROM residente
-                                WHERE residente.nombreR = '$nombre'";
-
-                    $resultPago = $conn->query($sqlPago);
+                    $sqlResidente = "SELECT * FROM residente WHERE nombreR = '$nombre' ORDER BY apellidoR ASC";
+                    $resultResidente = $conn->query($sqlResidente);
                     $index = 0;
 
-                    if ($resultPago->num_rows > 0) {
-                        while ($row = $resultPago->fetch_assoc()) {
+                    if ($resultResidente->num_rows > 0) {
+                        while ($row = $resultResidente->fetch_assoc()) {
                             if ($index < 10) {
                                 $rowClass = ($index % 2 == 0) ? 'even-row' : 'odd-row';
                                 echo "<tr class='$rowClass' data-id='" . $row["idResidentes"] . "'>";
-                                echo "<td class='idResidentes'>" . $row["idResidentes"] . "</td>";
+                                echo "<td class='idResidente'>" . $row["idResidentes"] . "</td>";
                                 echo "<td class='cedula'>" . $row["cedulaR"] . "</td>";
                                 echo "<td class='nombre'>" . $row["nombreR"] . "</td>";
                                 echo "<td class='apellido'>" . $row["apellidoR"] . "</td>";
@@ -224,6 +228,7 @@
                         echo "<p>No se encontraron resultados</p><br>";
                     }
                     echo "<script>window.location = '#resumen-residente';</script>";
+
                 }
                 ?>
             </table><br><br>

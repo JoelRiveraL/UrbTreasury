@@ -127,6 +127,10 @@
                     function recargarTabla()
                     {
                         include '../Forms/conexionMySql.php';
+                        
+                        $db = Database::getInstance();
+                        $conn = $db->getConnection();
+
                         $sqlPago = "SELECT * FROM residente";
                         $resultPago = $conn->query($sqlPago);
                         $index = 0;

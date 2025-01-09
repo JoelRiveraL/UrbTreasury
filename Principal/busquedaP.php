@@ -95,10 +95,15 @@
                 recargarTabla();
                 function recargarTabla()
                 {
-                    include '../Forms/conexionMySql.php';
+                    require_once '../Forms/conexionMySql.php';
+
+                    // Obtener la instancia de la base de datos
+                    $db = Database::getInstance();
+                    $conn = $db->getConnection();
+
                     $sqlPago = "SELECT * FROM pago 
-                INNER JOIN residente ON pago.residenteP = residente.cedulaR 
-                ORDER BY fechaP DESC";
+                                INNER JOIN residente ON pago.residenteP = residente.cedulaR 
+                                ORDER BY fechaP DESC";
                     $resultPago = $conn->query($sqlPago);
                     $index = 0;
 
@@ -115,12 +120,11 @@
                                 echo "<td class='tipo'>" . $row["tipoP"] . "</td>";
                                 echo "<td class='observacion'>" . $row["observacionesP"] . "</td>";
                                 echo "</tr>";
-                                $index++;
                             }
+                            $index++;
                         }
-                    } else {
-                        echo "<p>No se encontraron resultados</p><br>";
                     }
+
                 }
                 ?>
             </table>
@@ -166,15 +170,20 @@
                 </tr>
                 <?php
                 if (isset($_POST['buscarR'])) {
-                    include '../Forms/conexionMySql.php';
+                    require_once '../Forms/conexionMySql.php';
+
+                    // Obtener la instancia de la base de datos
+                    $db = Database::getInstance();
+                    $conn = $db->getConnection();
+
                     $id = $_POST['cedula'];
 
                     $sqlPago = "SELECT pago.*, residente.nombreR , residente.apellidoR
-                    FROM pago 
-                    INNER JOIN residente 
-                    ON pago.residenteP = residente.cedulaR 
-                    WHERE pago.residenteP = $id 
-                    ORDER BY pago.fechaP DESC";
+                                FROM pago 
+                                INNER JOIN residente 
+                                ON pago.residenteP = residente.cedulaR 
+                                WHERE pago.residenteP = $id 
+                                ORDER BY pago.fechaP DESC";
 
                     $resultPago = $conn->query($sqlPago);
                     $index = 0;
@@ -199,9 +208,14 @@
                         echo "<p>No se encontraron resultados</p><br>";
                     }
                     echo "<script>window.location = '#resumen-residente';</script>";
-                } else if (isset($_POST['buscarRNombre'])) {
 
-                    include '../Forms/conexionMySql.php';
+                } else if (isset($_POST['buscarRNombre'])) {
+                    require_once '../Forms/conexionMySql.php';
+
+                    // Obtener la instancia de la base de datos
+                    $db = Database::getInstance();
+                    $conn = $db->getConnection();
+
                     $nombre = $_POST['nombre'];
 
                     // Escapar y citar el nombre para evitar inyección SQL
@@ -237,6 +251,7 @@
                         echo "<p>No se encontraron resultados</p><br>";
                     }
                     echo "<script>window.location = '#resumen-residente';</script>";
+
                 }
                 ?>
             </table><br><br>

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    include '../Forms/conexionMySql.php';
+?>
 
 <head>
     <meta charset="UTF-8">
@@ -61,8 +64,10 @@
                     <br><br>
                 </form>
                 <?php
-                include '../Forms/conexionMySql.php';
                 include '../Forms/validarCedula.php';
+
+                $db = Database::getInstance();
+                $conn = $db->getConnection();
 
                 if (isset($_POST['idBuscar'])) {
                     $id = $_POST["idConsulta"];
@@ -104,14 +109,12 @@
                             $revisar = false;
                         }
 
-                        $stmt->close();
                     } else {
                         echo "<p style='color:red;'>Cédula no válida</p>";
                         $revisar = false;
                         $presionadValidacion = false;
                     }
                 }
-                $conn->close();
                 ?>
 
                 <center>
@@ -128,7 +131,9 @@
                     <br>
                 </form>
                 <?php
-                include '../Forms/conexionMySql.php';
+
+                $db = Database::getInstance();
+                $conn = $db->getConnection();
 
                 if (isset($_POST['idBuscarResidente'])) {
                     $id = $_POST["nombreConsulta"];
@@ -167,11 +172,7 @@
                         echo "<p style='color:red;'>Usuario no encontrado</p>";
                         $revisar = false;
                     }
-                    $stmt->close();
                 }
-
-                // Cierra la conexión a la base de datos
-                $conn->close();
                 ?>
                 <table></table><br>
                 <script>
@@ -253,13 +254,15 @@
                         <th>Observacion</th>
                     </tr>
                     <?php
-                    recargarTabla();
-                    function recargarTabla()
+                    require_once '../Forms/conexionMySql.php';
+                    $db = Database::getInstance();
+                    $conn = $db->getConnection();
+                    recargarTabla($conn);
+                    function recargarTabla($conn)
                     {
-                        include '../Forms/conexionMySql.php';
                         $sqlPago = "SELECT * FROM pago 
-                INNER JOIN residente ON pago.residenteP = residente.cedulaR 
-                ORDER BY fechaP DESC";
+                        INNER JOIN residente ON pago.residenteP = residente.cedulaR 
+                        ORDER BY fechaP DESC";
                         $resultPago = $conn->query($sqlPago);
                         $index = 0;
 

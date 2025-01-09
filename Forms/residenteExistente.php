@@ -3,6 +3,10 @@ function residenteExistente($cedula)
 {
     include_once('conexionMySql.php');
 
+    // Obtener la instancia de la base de datos
+    $db = Database::getInstance();
+    $conn = $db->getConnection();
+
     $nombreTabla = 'residente';
 
     $sql = "SELECT * FROM $nombreTabla WHERE cedulaR = ?";

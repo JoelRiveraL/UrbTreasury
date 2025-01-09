@@ -5,7 +5,11 @@ function ingresoResidentes($cedula, $nombre, $apellido, $correo, $telefono, $dep
     $ingresado = false;
     $enviado = true;
 
-    include 'conexionMySql.php';
+    require_once 'conexionMySql.php';
+
+    // Obtener la instancia de la base de datos
+    $db = Database::getInstance();
+    $conn = $db->getConnection();
 
     // Verifica si los datos ya existen en la tabla.
     $sqlExistente = "SELECT * FROM residente WHERE cedulaR = '$cedula' AND nombreR = '$nombre' AND apellidoR = '$apellido' AND correoR = '$correo' AND telefonoR = '$telefono' AND loteR = '$departamento'";
@@ -19,18 +23,12 @@ function ingresoResidentes($cedula, $nombre, $apellido, $correo, $telefono, $dep
             $ingresado = true;
             $mensaje = "¡Datos enviados con éxito!";
         } else {
-            $mensaje = "Error al insertar datos: ";
+            $mensaje = "Error al insertar datos: " . $conn->error;
         }
     } else {
         $mensaje = "¡Datos ya existentes!";
     }
 
-    // Cierra la conexión a la base de datos.
-    $conn->close();
-
-    $_SESSION['ingresado'] = $ingresado;
-    $_SESSION['enviado'] = $enviado;
-    $_SESSION['id'] = $cedula;
 
     return $mensaje;
 }

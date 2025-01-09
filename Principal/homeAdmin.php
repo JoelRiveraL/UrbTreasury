@@ -112,6 +112,10 @@
                     <?php
                     include '../Forms/conexionMySql.php';
 
+                    // Obtener la instancia de la base de datos
+                    $db = Database::getInstance();
+                    $conn = $db->getConnection();
+
                     $sqlPago = "SELECT * FROM pago 
                     INNER JOIN residente ON pago.residenteP = residente.cedulaR 
                     ORDER BY fechaP DESC";
@@ -143,7 +147,13 @@
                 <h3>Notificaciones</h3>
                 <hr>
                 <?php
-                include '../Forms/conexionMySql.php';
+                require_once '../Forms/conexionMySql.php';
+                require_once '../Forms/comentarios.php';
+                require_once '../Forms/adminObserver.php';
+
+                // Obtener la instancia de la base de datos
+                $db = Database::getInstance();
+                $conn = $db->getConnection();
 
                 // Obtener la fecha de hoy en el formato 'YYYY-MM-DD'
                 $fecha_hoy = date("Y-m-d");
@@ -153,20 +163,26 @@
 
                 $result = $conn->query($sql);
 
+                $comentarioSubject = new ComentarioSubject();
+                $adminObserver = new AdminObserver("Admin");
+                $comentarioSubject->attach($adminObserver);
+
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
-                        echo "<article>";
-                        echo "<p>Tiene una notificación de: " . $row["usuarioResC"] . ", Nombre:  " . $row["nombreResC"] . "</p><br>";
-                        echo "</article>";
-                        echo "<hr>";
+                        $data = [
+                            'usuario' => $row["usuarioResC"],
+                            'nombre' => $row["nombreResC"],
+                            'email' => $row["emailResC"],
+                            'asunto' => $row["asuntoC"],
+                            'fecha' => $row["fechaC"]
+                        ];
+                        $comentarioSubject->setData($data);
                     }
                 } else {
-                    echo "<article>";
-                    echo "<p>No tiene notificaciones recientes para hoy</p><br>";
-                    echo "</article>";
-                    echo "<hr>";
+                    echo "<p>No se encontraron resultados</p><br>";
                 }
 
+                $conn->close();
                 ?>
                 <br>
                 <center><img src="../Images/LogoNotificaciones.jpg" width="80%"></center>

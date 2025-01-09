@@ -50,9 +50,13 @@
         <br><br><br><br><br>
         <section>
             <br>
-            <h2 class="comentarios">Comentario mas reciente:</h2><br>
+            <h2 class="comentarios">Comentario más reciente:</h2><br>
             <?php
-            include '../Forms/conexionMySql.php';
+            require_once '../Forms/conexionMySql.php';
+
+            // Obtener la instancia de la base de datos
+            $db = Database::getInstance();
+            $conn = $db->getConnection();
 
             $sql = "SELECT * FROM comentarios ORDER BY fechaC DESC LIMIT 1";
             $result = $conn->query($sql);
@@ -67,16 +71,19 @@
                 }
             } else {
                 echo "<section class='resumen'><br>";
-                echo "<p>No se ha registrado ningun comentario reciente</p><br>";
+                echo "<p>No se ha registrado ningún comentario reciente</p><br>";
                 echo "</section><br>";
             }
+
             ?>
         </section>
         <section>
             <br>
             <h2 class="comentarios">Comentarios:</h2><br>
             <?php
-            include '../Forms/conexionMySql.php';
+
+            $db = Database::getInstance();
+            $conn = $db->getConnection();
 
             $sql = "SELECT * FROM comentarios ORDER BY fechaC DESC LIMIT 7";
             $result = $conn->query($sql);

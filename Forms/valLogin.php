@@ -3,6 +3,10 @@ session_start();
 
 require_once('../Forms/conexionMySql.php');
 
+// Obtener la instancia de la base de datos
+$db = Database::getInstance();
+$conn = $db->getConnection();
+
 $user = $_POST["usuario"];
 $password = $_POST["password"];
 
@@ -29,3 +33,5 @@ if ($userData) {
     header('Location: ../index.html?error=true');
     exit();
 }
+
+$stmt->close();

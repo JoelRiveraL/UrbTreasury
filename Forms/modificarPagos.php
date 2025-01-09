@@ -6,6 +6,10 @@ $data = json_decode(file_get_contents("php://input"));
 if (isset($data->editsPagos) && !empty($data->editsPagos)) {
     require_once('conexionMySql.php');
 
+    // Obtener la instancia de la base de datos
+    $db = Database::getInstance();
+    $conn = $db->getConnection();
+
     foreach ($data->editsPagos as $pago) {
         $id = intval($pago[0]);
         $cedula = $pago[1];

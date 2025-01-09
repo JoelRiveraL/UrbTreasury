@@ -5,6 +5,10 @@ function ingresoUsuarios($usuario, $contrasenia, $passwordValidar, $cedula)
     if ($contrasenia == $passwordValidar) {
         require('conexionMySql.php');
 
+        // Obtener la instancia de la base de datos
+        $db = Database::getInstance();
+        $conn = $db->getConnection();
+
         $nombreTabla = 'usuario';
 
         $sqlExistente = "SELECT * FROM $nombreTabla WHERE usuarioU = ?";
@@ -27,17 +31,15 @@ function ingresoUsuarios($usuario, $contrasenia, $passwordValidar, $cedula)
         } else {
             $mensajeSignUp = "Usuario ya existente!";
             $enviado = true;
-            $ingresado = false;
         }
+
+        $stmtExistente->close();
+        $stmtInsertar->close();
     } else {
-        $mensajeSignUp = "Las contraseñas no coinciden";
-        $enviado = true;
+        $mensajeSignUp = "Las contraseñas no coinciden!";
+        $enviado = false;
         $ingresado = false;
     }
-
-    $_SESSION['mensaje'] = $mensajeSignUp;
-    $_SESSION['enviado'] = $enviado;
-    $_SESSION['ingresado'] = $ingresado;
 
     return $mensajeSignUp;
 }

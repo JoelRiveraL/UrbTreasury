@@ -127,6 +127,10 @@
                 </section>
                 <?php
                 include '../Forms/conexionMySql.php';
+
+                $db = Database::getInstance();
+                $conn = $db->getConnection();
+
                 $sqlSop = "SELECT * FROM soporte";
                 $resultPago = $conn->query($sqlSop);
 

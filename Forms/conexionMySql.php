@@ -1,30 +1,30 @@
 <?php
-/*
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "urbanizationtreasurysystem";
+class Database {
+    private static $instance = null;
+    private $conn;
 
+    private $servername = "localhost";
+    private $username = "root";
+    private $password = "";
+    private $dbname = "urbanizationtreasurysystem";
 
-$servername = "www.drs.ec:2083";
-$username = "datareco_joelDome";
-$password = "W.%[H}bCLCK-";
-$dbname = "datareco_urbTreasury";
+    private function __construct() {
+        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname, 3306);
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+        if ($this->conn->connect_error) {
+            die("Conexión fallida: " . $this->conn->connect_error);
+        }
+    }
 
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
-}*/
+    public static function getInstance() {
+        if (self::$instance == null) {
+            self::$instance = new Database();
+        }
 
+        return self::$instance;
+    }
 
-$servername = "localhost";
-$username = "datareco_joelDome";
-$password = "W.%[H}bCLCK-";
-$dbname = "datareco_urbTreasury";
-
-$conn = new mysqli($servername, $username, $password, $dbname, 3306);
-
-if ($conn->connect_error) {
-    die("Conexión fallida: " . $conn->connect_error);
+    public function getConnection() {
+        return $this->conn;
+    }
 }

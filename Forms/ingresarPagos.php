@@ -1,7 +1,11 @@
 <?php
 function ingresoPagos($pagos, $tipo, $fecha, $observaciones, $id)
 {
-    include 'conexionMySql.php';
+    require_once 'conexionMySql.php';
+
+    // Obtener la instancia de la base de datos
+    $db = Database::getInstance();
+    $conn = $db->getConnection();
 
     $ingresadoPagos = false;
     $enviadoPagos = true;
@@ -12,10 +16,8 @@ function ingresoPagos($pagos, $tipo, $fecha, $observaciones, $id)
         $ingresadoPagos = true;
         $mensaje = "¡Pago registrado con éxito!";
     } else {
-        $mensaje = "Error al registrar el pago";
+        $mensaje = "Error al registrar el pago: " . $conn->error;
     }
-
-    $conn->close();
 
     $_SESSION['ingresadoPagos'] = $ingresadoPagos;
     $_SESSION['enviadoPagos'] = $enviadoPagos;

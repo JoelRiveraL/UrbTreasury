@@ -4,7 +4,11 @@ session_start();
 $data = json_decode(file_get_contents("php://input"));
 
 if (isset($data->soporteData) && !empty($data->soporteData)) {
-    include 'conexionMySql.php';
+    require_once 'conexionMySql.php';
+
+    // Obtener la instancia de la base de datos
+    $db = Database::getInstance();
+    $conn = $db->getConnection();
 
     $nombre = $data->soporteData[0];
     $telefono = $data->soporteData[1];
@@ -17,7 +21,6 @@ if (isset($data->soporteData) && !empty($data->soporteData)) {
     if ($conn->query($sql) === FALSE) {
         echo "Error al ingresar soporte: " . $conn->error;
     }
-
 
     $mensajeModificar = "Soporte ingresado exitosamente";
     $_SESSION['mensajeModificar'] = $mensajeModificar;

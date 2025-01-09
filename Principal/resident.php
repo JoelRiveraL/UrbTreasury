@@ -167,6 +167,10 @@
                             <?php
                             include '../Forms/conexionMySql.php';
 
+
+                            $db = Database::getInstance();
+                            $conn = $db->getConnection();
+
                             if (isset($_GET['user'])) {
                                 $user = $_GET['user'];
 

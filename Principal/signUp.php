@@ -45,6 +45,9 @@ $ingresado = false;
             include '../Forms/validarCedula.php';
             include_once '../Forms/conexionMySql.php';
 
+            $db = Database::getInstance();
+            $conn = $db->getConnection();
+
             if (isset($_POST['validarResidente'])) {
                 $cedula = $_POST["cedula"];
 
