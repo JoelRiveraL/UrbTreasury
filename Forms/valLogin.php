@@ -1,26 +1,16 @@
 <?php
 session_start();
 
-require_once('../Forms/conexionMySql.php');
-
-// Obtener la instancia de la base de datos
-$db = Database::getInstance();
-$conn = $db->getConnection();
+require_once '../Models/Usuario.php';
 
 $user = $_POST["usuario"];
 $password = $_POST["password"];
 
-$nombreTabla = 'usuario';
-
-$sql = "SELECT * FROM $nombreTabla WHERE usuarioU = ? AND passwordU = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("ss", $user, $password);
-$stmt->execute();
-$result = $stmt->get_result();
-$userData = $result->fetch_assoc();
+$usuarioObj = new Usuario($user, $password);
+$userData = $usuarioObj->login();
 
 if ($userData) {
-    $autenticado = true;
+    $_SESSION['autenticado'] = true;
 
     if ($user == "Patricia123") {
         header('Location: ../Principal/homeAdmin.php');
@@ -33,5 +23,3 @@ if ($userData) {
     header('Location: ../index.html?error=true');
     exit();
 }
-
-$stmt->close();

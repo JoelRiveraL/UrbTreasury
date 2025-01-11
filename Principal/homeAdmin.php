@@ -146,47 +146,13 @@
             <section id="Notes">
                 <h3>Notificaciones</h3>
                 <hr>
-                <?php
-                require_once '../Forms/conexionMySql.php';
-                require_once '../Forms/comentarios.php';
-                require_once '../Forms/adminObserver.php';
-
-                // Obtener la instancia de la base de datos
-                $db = Database::getInstance();
-                $conn = $db->getConnection();
-
-                // Obtener la fecha de hoy en el formato 'YYYY-MM-DD'
-                $fecha_hoy = date("Y-m-d");
-
-                // Consulta SQL para seleccionar solo los comentarios de la fecha de hoy
-                $sql = "SELECT * FROM comentarios WHERE fechaC = '$fecha_hoy' ORDER BY fechaC DESC LIMIT 4";
-
-                $result = $conn->query($sql);
-
-                $comentarioSubject = new ComentarioSubject();
-                $adminObserver = new AdminObserver("Admin");
-                $comentarioSubject->attach($adminObserver);
-
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                        $data = [
-                            'usuario' => $row["usuarioResC"],
-                            'nombre' => $row["nombreResC"],
-                            'email' => $row["emailResC"],
-                            'asunto' => $row["asuntoC"],
-                            'fecha' => $row["fechaC"]
-                        ];
-                        $comentarioSubject->setData($data);
-                    }
-                } else {
-                    echo "<p>No se encontraron resultados</p><br>";
-                }
-
-                $conn->close();
-                ?>
-                <br>
+                <div id="notificaciones"></div>
                 <center><img src="../Images/LogoNotificaciones.jpg" width="80%"></center>
             </section>
+
+            <!-- Incluir el archivo externo -->
+            <script src="../Script/notificaciones.js"></script>
+
         </aside>
     </section>
 

@@ -1,5 +1,6 @@
 <?php
 include '../Forms/observer.php';
+require_once 'conexionMySql.php';
 
 class ComentarioSubject implements Subject {
     private $observers = [];

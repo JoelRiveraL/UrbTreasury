@@ -4,11 +4,7 @@ session_start();
 $data = json_decode(file_get_contents("php://input"));
 
 if (isset($data->soporteData) && !empty($data->soporteData)) {
-    require_once 'conexionMySql.php';
-
-    // Obtener la instancia de la base de datos
-    $db = Database::getInstance();
-    $conn = $db->getConnection();
+    require_once '../Models/Soporte.php';
 
     $nombre = $data->soporteData[0];
     $telefono = $data->soporteData[1];
@@ -16,14 +12,15 @@ if (isset($data->soporteData) && !empty($data->soporteData)) {
     $nombreEncargado = $data->soporteData[3];
     $descripcion = $data->soporteData[4];
 
-    $sql = "INSERT INTO soporte (nombreS, telefonoS, correoS, contactoS, descripcionS) VALUES ('$nombre', '$telefono', '$email', '$nombreEncargado', '$descripcion')";
+    $soporte = new Soporte($nombre, $telefono, $email, $nombreEncargado, $descripcion);
+    $mensaje = $soporte->registrar();
 
-    if ($conn->query($sql) === FALSE) {
-        echo "Error al ingresar soporte: " . $conn->error;
+    if (strpos($mensaje, 'Error') !== false) {
+        echo $mensaje;
+    } else {
+        $mensajeModificar = $mensaje;
+        $_SESSION['mensajeModificar'] = $mensajeModificar;
     }
-
-    $mensajeModificar = "Soporte ingresado exitosamente";
-    $_SESSION['mensajeModificar'] = $mensajeModificar;
 } else {
     $mensajeModificar = "No se recibieron datos válidos";
 }

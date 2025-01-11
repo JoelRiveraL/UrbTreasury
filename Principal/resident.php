@@ -29,7 +29,7 @@
         </section>
         <nav class="nav">
             <ul class="mainMenu" id="mainMenu">
-                <li class="mainMenuItem"><a href="#inicio"" class=" mainMenuLink">Inicio</a></li>
+                <li class="mainMenuItem"><a href="#inicio" class=" mainMenuLink">Inicio</a></li>
                 <li class="mainMenuItem"><a href="#historial" class="mainMenuLink">Historial</a></li>
                 <li class="mainMenuItem"><a href="#comunicado" class="mainMenuLink">Comunicado</a></li>
                 <li class="mainMenuItem"><a href="#contacto" class="mainMenuLink">Contacto</a></li>

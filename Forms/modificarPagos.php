@@ -4,24 +4,21 @@ session_start();
 $data = json_decode(file_get_contents("php://input"));
 
 if (isset($data->editsPagos) && !empty($data->editsPagos)) {
-    require_once('conexionMySql.php');
+    require_once '../Models/Pago.php';
 
-    // Obtener la instancia de la base de datos
-    $db = Database::getInstance();
-    $conn = $db->getConnection();
+    foreach ($data->editsPagos as $pagoData) {
+        $id = intval($pagoData[0]);
+        $cedula = $pagoData[1];
+        $fecha = $pagoData[3];
+        $monto = $pagoData[4];
+        $tipo = $pagoData[5];
+        $observaciones = $pagoData[6];
 
-    foreach ($data->editsPagos as $pago) {
-        $id = intval($pago[0]);
-        $cedula = $pago[1];
-        $fecha = $pago[3];
-        $monto = $pago[4];
-        $tipo = $pago[5];
-        $observaciones = $pago[6];
+        $pago = new Pago($monto, $tipo, $fecha, $observaciones, $cedula, $id);
+        $mensaje = $pago->actualizar();
 
-        $sql = "UPDATE pago SET montoP = '$monto', tipoP = '$tipo', fechaP = '$fecha', observacionesP = '$observaciones', residenteP = '$cedula' WHERE idPago = $id";
-
-        if ($conn->query($sql) === FALSE) {
-            echo "Error al modificar pago: " . $conn->error;
+        if (strpos($mensaje, 'Error') !== false) {
+            echo $mensaje;
         }
     }
 
