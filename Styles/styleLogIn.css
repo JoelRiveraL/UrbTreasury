@@ -117,3 +117,31 @@ body {
     border-radius: 5px;
     display: none;
 }
+
+@media (max-width: 768px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+        width: 100%;
+    }
+
+    .banner {
+        display: none;
+    }
+
+    .formulario {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .welText {
+        font-size: 26px;
+    }
+
+    .submit {
+        font-size: 16px;
+        padding: 10px;
+    }
+}

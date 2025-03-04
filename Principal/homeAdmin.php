@@ -137,6 +137,10 @@
                         }
                     } else {
                         echo "<p>No se encontraron resultados</p><br>";
+                        // Uso
+                        $emailNotification = new EmailNotification();
+                        $notificationService = new NotificationService($emailNotification);
+                        $notificationService->notify("Mensaje de prueba");
                     }
                     ?>
                 </table>

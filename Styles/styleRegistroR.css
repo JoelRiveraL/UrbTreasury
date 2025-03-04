@@ -440,7 +440,7 @@ footer {
 
 
 table {
-    width: 65%;
+    width: 100%;
     border-collapse: collapse;
     margin: 0 auto;
 }
@@ -449,6 +449,7 @@ th,
 td {
     padding: 10px;
     text-align: left;
+    white-space: nowrap;
 }
 
 .header-row {
@@ -468,4 +469,78 @@ tr:hover {
     background-color: #2e6594;
     color: white;
     cursor: pointer;
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 700px) {
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    th,
+    td {
+        white-space: nowrap;
+    }
+}
+
+/* Estilos para pantallas muy pequeñas */
+@media screen and (max-width: 575px) {
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    th,
+    td {
+        white-space: nowrap;
+    }
+
+    /* Container for both the form and the table */
+    .registro-container {
+        display: flex;
+        justify-content: space-between;
+        /* Space out the form and table */
+        gap: 20px;
+        /* Space between the form and the table */
+    }
+
+    /* Styling for the form section (left side) */
+    .registro1 {
+        flex: 1;
+        /* Takes up 50% of the container */
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+        .registro {
+            flex: 1;
+            /* Takes up 50% of the container */
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+    /* Styling for the table section (right side) */
+    #resumen-general {
+        flex: 1;
+        /* Takes up the other 50% of the container */
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        overflow-x: auto;
+    }
+
+    /* Optional: style the header row in the table */
+    #resumen-general th {
+        font-weight: bold;
+        padding: 10px;
+    }
+
 }

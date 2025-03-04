@@ -40,6 +40,8 @@
                     </ul>
                 </li>
                 <li><a href="../Principal/comentarios.php">COMENTARIOS</a></li>
+                <li><a href="../Principal/soporte.php">SOPORTE</a></li>
+                <li><a href="../index.html">SALIR</a></li>
             </ul>
         </nav>
     </header>

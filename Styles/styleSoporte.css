@@ -374,14 +374,12 @@ footer {
     display: none;
     position: fixed;
     z-index: 1000;
-    /* Asegura que el modal esté sobre el resto del contenido */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
-    /* Fondo oscuro semi-transparente */
 }
 
 .modal-contenido-Support,
@@ -396,21 +394,7 @@ footer {
     position: relative;
 }
 
-@media screen and (max-width: 1350px) {
-
-    .modal-contenido-Support,
-    modal-contenido-Support-Delete {
-        background-color: #fefefe;
-        margin: 5% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 60%;
-        border-radius: 5px;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        position: relative;
-    }
-}
-
+/* Modal Close Button */
 .cerrar-modal-Support,
 .cerrar-modal-Support-Delete {
     color: #aaa;
@@ -428,10 +412,31 @@ footer {
     cursor: pointer;
 }
 
-#contenedorBCrearSup {
-    padding: 20px;
+/* Forms */
+#formCrearSup {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
+#formCrearSup label {
+    color: #283629;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+#formCrearSup input,
+#formCrearSup textarea {
+    padding: 17px 25px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+    background-color: #EDFFF0;
+    border: 2px solid #EDFFF0;
+    color: #283629;
+    outline: none;
+    font-size: 14px;
+}
 #crearSupport {
     border: 0;
     background-image: linear-gradient(150deg, #2473b8, #498dc7, #4ab1da);
@@ -459,29 +464,14 @@ footer {
     transform: scale(0.9);
 }
 
-#formCrearSup {
+#formCrearSup input::placeholder,
+#formCrearSup textarea::placeholder {
+    color: #6a6a6a;
+}
+
+#aceptar-form-support {
     display: flex;
-    flex-direction: column;
-    text-align: left;
-}
-
-#formCrearSup label {
-    color: #283629;
-    font-size: 20px;
-    font-weight: 600;
-    margin-bottom: 15px;
-}
-
-#formCrearSup input,
-#formCrearSup textarea {
-    padding: 17px 25px;
-    border-radius: 25px;
-    margin-bottom: 20px;
-    background-color: #EDFFF0;
-    border: 2px solid #EDFFF0;
-    color: #283629;
-    outline: none;
-    font-size: 14px;
+    justify-content: space-between;
 }
 
 #formCrearSup input::placeholder,
@@ -499,4 +489,68 @@ footer {
 
 #aceptar-form-support input[type="submit"]:hover {
     background-color: #27541cdd;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 1350px) {
+
+    .modal-contenido-Support,
+    .modal-contenido-Support-Delete {
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+
+    .modal-contenido-Support,
+    .modal-contenido-Support-Delete {
+        width: 80%;
+    }
+
+    #formCrearSup {
+        padding: 10px;
+    }
+
+    #formCrearSup label {
+        font-size: 18px;
+    }
+
+    #formCrearSup input,
+    #formCrearSup textarea {
+        font-size: 16px;
+    }
+
+    #aceptar-form-support input {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    .cerrar-modal-Support,
+    .cerrar-modal-Support-Delete {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+
+    .modal-contenido-Support,
+    .modal-contenido-Support-Delete {
+        width: 90%;
+    }
+
+    #formCrearSup input,
+    #formCrearSup textarea {
+        font-size: 14px;
+        padding: 14px 20px;
+    }
+
+    #aceptar-form-support input {
+        font-size: 12px;
+        padding: 6px 18px;
+    }
+
+    .cerrar-modal-Support,
+    .cerrar-modal-Support-Delete {
+        font-size: 22px;
+    }
 }

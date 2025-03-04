@@ -143,7 +143,7 @@ section {
 }
 
 table {
-    width: 65%;
+    width: 100%;
     border-collapse: collapse;
     margin: 0 auto;
 }
@@ -152,6 +152,7 @@ th,
 td {
     padding: 10px;
     text-align: left;
+    white-space: nowrap;
 }
 
 .header-row {
@@ -171,6 +172,61 @@ tr:hover {
     background-color: #2e6594;
     color: white;
     cursor: pointer;
+}
+
+/* Estilos para pantallas pequeñas */
+@media screen and (max-width: 700px) {
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    th,
+    td {
+        white-space: nowrap;
+    }
+}
+
+/* Estilos para pantallas muy pequeñas */
+@media screen and (max-width: 575px) {
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    th,
+    td {
+        white-space: nowrap;
+    }
+
+    #consultasBusquedaPagos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    #consultasBusquedaPagos form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+        /* Espaciado entre input y botón */
+    }
+
+    #consultasBusquedaPagos input[type="text"] {
+        width: 100%;
+        padding: 8px;
+    }
+
+    #consultasBusquedaPagos input[type="submit"] {
+        width: 50%;
+        padding: 8px;
+    }
 }
 
 input[type="text"] {
@@ -204,6 +260,31 @@ input[type="button"] {
     box-sizing: border-box;
     border: 1px solid #ccc;
     border-radius: 5px;
+}
+
+/* Media queries para hacer los botones responsivos */
+@media (max-width: 1024px) {
+
+    input[type="submit"],
+    input[type="button"] {
+        width: 25%;
+    }
+}
+
+@media (max-width: 768px) {
+
+    input[type="submit"],
+    input[type="button"] {
+        width: 40%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    input[type="submit"],
+    input[type="button"] {
+        width: 80%;
+    }
 }
 
 input:focus {
